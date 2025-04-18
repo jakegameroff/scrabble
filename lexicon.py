@@ -22,7 +22,7 @@ class Lexicon:
         return s
 
     def __contains__(self, w):
-        return w.lower() in self.lexicon
+        return w.upper() in self.lexicon
 
     def __iter__(self):
         return iter(self.lexicon)
