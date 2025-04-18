@@ -9,10 +9,10 @@ class Scrabbler:
         with open("tile_distribution.json", "r") as d:
             tile_distribution = json.load(d)
         self.tile_bag = sum([[letter] * freq for letter, freq in tile_distribution.items()], start=[])
-        self.rack = self.generate_rack()
+        self.generate_rack()
 
     def generate_rack(self):
-        return random.sample(self.tile_bag, k=7)
+        self.rack = random.sample(self.tile_bag, k=7)
     
     def set_rack(self, rack):
         self.rack = rack
