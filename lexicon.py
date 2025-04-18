@@ -4,8 +4,13 @@ import json
 class Lexicon:
     def __init__(self, dict_name, dict_file):
         self.dict_name = dict_name
-        with open(f"dictionaries/{dict_file}", "r") as d:
-            self.lexicon = set(json.load(d))
+        with open(f"data/dictionaries/{dict_file}", "r") as d:
+            self.lexicon = set([w.upper() for w in json.load(d)])
+
+        with open("data/tile_distribution.json", "r") as d:
+            tile_distribution = json.load(d)
+            self.tile_distribution = tile_distribution
+            self.tile_bag = sum([[letter] * freq for letter, freq in tile_distribution.items()], start=[])
 
     def __str__(self):
         num_words = len(self.lexicon)

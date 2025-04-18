@@ -6,13 +6,10 @@ import json
 class Scrabbler:
     def __init__(self, lexicon):
         self.lexicon = lexicon
-        with open("tile_distribution.json", "r") as d:
-            tile_distribution = json.load(d)
-        self.tile_bag = sum([[letter] * freq for letter, freq in tile_distribution.items()], start=[])
         self.generate_rack()
 
     def generate_rack(self):
-        self.rack = random.sample(self.tile_bag, k=7)
+        self.rack = random.sample(self.lexicon.tile_bag, k=7)
     
     def set_rack(self, rack):
         self.rack = rack
@@ -20,7 +17,7 @@ class Scrabbler:
     def anagrams(self, s=""):
         if len(s) == 0:
             s = ''.join(self.rack)
-        alphabet = [chr(i) for i in range(ord('a'), ord('z') + 1)]
+        alphabet = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
 
         anagrams_no_b = lambda s : set("".join(t) for t in permutations(s)) & self.lexicon.lexicon
         anagrams_one_b = lambda s : set.union(*[anagrams_no_b(s.replace('?', a)) for a in alphabet])
