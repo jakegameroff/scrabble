@@ -31,10 +31,11 @@ class Lexicon:
         k_words = [w for w in self if len(w) == k]
         k_words.sort()
         return k_words
+        
 
 if __name__ == "__main__":
     l = Lexicon("NWL23", "nwl23.json")
     two_letter_words = l.len_k_words(2)
-    vowels = ['a', 'e', 'i', 'o', 'u', 'y']
+    vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
     two_letter_words_no_vowels = [w for w in two_letter_words if len([v for v in vowels if v in w]) == 0]
     print(two_letter_words_no_vowels)
